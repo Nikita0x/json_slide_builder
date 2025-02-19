@@ -1,0 +1,185 @@
+[
+  {
+    "key": "talk_with_AI",
+    "slideType": "info",
+    "elements": [
+      {
+        "type": "img",
+        "src": "https://talkmosaic.lon1.digitaloceanspaces.com/infoheader_d337da86e1.png",
+        "style": {
+          "margin-bottom": "6rem",
+          "margin-left": "auto",
+          "margin-right": "auto",
+          "display": "block",
+          "filter": "drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))"
+        },
+        "theme": {
+          "light": {
+            "display": "none"
+          },
+          "dark": {}
+        }
+      },
+      {
+        "type": "img",
+        "src": "https://talkmosaic.lon1.digitaloceanspaces.com/info_modern_light_41d7823e10.png",
+        "style": {
+          "margin-bottom": "6rem",
+          "margin-left": "auto",
+          "margin-right": "auto",
+          "display": "block",
+          "filter": "drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))"
+        },
+        "theme": {
+          "light": {},
+          "dark": {
+            "display": "none"
+          }
+        }
+      },
+      {
+        "type": "div",
+        "style": {
+          "position": "relative",
+          "padding-left": "1.25rem",
+          "margin-bottom": "1.75rem",
+          "display": "flex",
+          "gap": "0.75rem",
+          "justify-center": "center",
+          "align-items": "center"
+        },
+        "children": [
+          {
+            "type": "img",
+            "src": "https://talkmosaic.lon1.digitaloceanspaces.com/darklogo_cb9d082282.png",
+            "style": {
+              "display": "block",
+              "width": "1.5rem",
+              "height": "1.5rem"
+            },
+            "theme": {
+              "light": {},
+              "dark": {}
+            }
+          },
+          {
+            "textContent": "talkmosaic test",
+            "type": "p",
+            "style": {
+              "font-size": "1.25rem",
+              "font-weight": "600"
+            },
+            "theme": {
+              "light": {
+                "color": "green"
+              },
+              "dark": {
+                "color": "red"
+              }
+            }
+          },
+          {
+            "type": "div",
+            "style": {
+              "position": "absolute",
+              "top": "-1.438rem",
+              "left": "-3.688rem",
+              "z-index": "-1",
+              "width": "18.875rem",
+              "height": "18.875rem",
+              "background": "#5C41D3",
+              "border-radius": "999px",
+              "filter": "blur(140px)"
+            }
+          }
+        ]
+      },
+
+      {
+        "type": "p",
+        "textContent": "<span class='text-purple-dark    dark:text-white'>Talk with AI on any topic, create your unique bots!</span>",
+        "style": {
+          "padding-left": "1.25rem",
+          "color": "white",
+          "text-align": "left",
+          "font-size": "2.5rem",
+          "font-weight": "600"
+        }
+      }
+    ]
+  },
+
+  {
+    "key": "gender",
+    "slideType": "radio",
+    "prompt": "Gender: User's gender is:  \"{value}\".",
+    "title": "What's Your Gender?",
+    "description": "Please choose your gender. This will be used to identify your needs",
+    "layout": {
+      "display": "flex",
+      "flex-wrap": "wrap"
+    },
+    "options": [
+      {
+        "title": "Male",
+        "key": "male",
+        "src": "https://talkmosaic.lon1.digitaloceanspaces.com/male_8f8311fde8.png"
+      },
+      {
+        "title": "Female",
+        "key": "female",
+        "src": "https://talkmosaic.lon1.digitaloceanspaces.com/female_c338f2ba26.png"
+      },
+      {
+        "title": "Other",
+        "key": "other",
+        "src": "https://talkmosaic.lon1.digitaloceanspaces.com/other_65971c7b76.jpg"
+      }
+    ]
+  },
+
+  {
+    "key": "interest",
+    "slideType": "checkbox",
+    "prompt": "Interests: The user is interested in \"{value}\".",
+    "title": "Choose <span class='text-primary'>At Least 3</span> interests",
+    "description": "Select interests to start receiving personalized recommendations",
+    "optionsSource": "categories"
+  },
+  {
+    "key": "age",
+    "slideType": "radio",
+    "prompt": "Age: User's age is:  \"{value}\".",
+    "title": "What's your age?",
+    "description": "Please select your age",
+    "layout": {
+      "display": "grid",
+      "grid-template-columns": "repeat(2, 1fr)",
+      "gap": "1.25rem"
+    },
+    "options": [
+      { "title": "Under 18", "key": "under_18" },
+      { "title": "18 - 20", "key": "18-20" },
+      { "title": "21 - 23", "key": "21-23" },
+      { "title": "24 - 26", "key": "24 - 26" },
+      { "title": "27 - 30", "key": "27 - 30" },
+      { "title": "Over 30", "key": "over_30" }
+    ]
+  },
+
+  {
+    "key": "name",
+    "slideType": "input",
+    "prompt": "Name: The user's name is \"{value[0]}\".",
+    "title": "How Can Bot Address You?",
+    "description": "Enter your name and start chatting with your favorite characters",
+    "inputs": [
+      {
+        "key": "name",
+        "placeholder": "Your name",
+        "label": "Enter your name",
+        "required": true
+      }
+    ]
+  }
+]
