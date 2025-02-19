@@ -10,6 +10,7 @@ export const useSlidesStore = defineStore('slides', () => {
       id: crypto.randomUUID(),
       key: `slide-${slides.value.length + 1}`,
       slideType: 'info',
+      src: 'https://shorturl.at/NlEyA',
     }
 
     slides.value.push(newSlide)
