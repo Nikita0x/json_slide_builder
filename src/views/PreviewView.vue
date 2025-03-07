@@ -12,7 +12,7 @@
         disableOnInteraction: false, // Keep autoplay after user interaction
       }"
     >
-      <swiper-slide v-for="slide in slides" :key="slide.id">
+      <swiper-slide v-for="slide in slidesArray" :key="slide.id">
         <component :is="slideByType[slide.slideType as keyof typeof slideByType]" :slide="slide" />
       </swiper-slide>
     </swiper>
@@ -38,6 +38,8 @@ import 'swiper/css'
 
 const slidesStore = useSlidesStore()
 const { slides } = storeToRefs(slidesStore)
+
+const slidesArray = Object.values(slides.value)
 
 // interface Props {
 //   slides: any

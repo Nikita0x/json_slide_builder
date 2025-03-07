@@ -1,6 +1,5 @@
 <template>
   <!-- <OnboardingDefaultLayout :slide="slide"> -->
-  <p>swipe me</p>
   <div class="bg-emerald-900 cursor-pointer h-96">
     <pre>{{ slide }}</pre>
     <img :src="slide.src" alt="cat" class="h-40" />

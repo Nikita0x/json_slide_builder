@@ -1,4 +1,4 @@
-export type Slides = Slide[]
+export type Slides = Record<string, Slide>
 
 export type SlideTypes = 'info' | 'radio' | 'input' | 'checkbox'
 

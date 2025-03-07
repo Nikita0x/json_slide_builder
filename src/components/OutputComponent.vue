@@ -8,7 +8,12 @@
       {{ buttonTitle }}
     </button>
     <pre class="bg-black text-white/80">
-          {{ slides }}      
+        {{
+        Object.values(slides).map((item) => {
+          const { id, ...slideWithoutId } = item
+          return slideWithoutId
+        })
+      }}      
     </pre>
   </div>
 </template>
