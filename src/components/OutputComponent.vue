@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <button
-      v-if="slides.length"
+      v-if="Object.keys(slides).length"
       class="fixed right-10 top-5 bg-slate-900 text-white p-5 rounded-xl cursor-pointer"
       @click="copyToClipboard"
     >

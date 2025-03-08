@@ -19,7 +19,12 @@ export interface SlideElement {
   type: string
   textContent?: string
   class?: string
-  styles: Record<string, string>
+  src?: string
+  theme: {
+    light: Record<string, string>
+    dark: Record<string, string>
+  }
+  style: Record<string, string>
   children?: SlideElement[]
 }
 
