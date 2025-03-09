@@ -1,5 +1,5 @@
 <template>
-  <div @click="console.log(slidesArray)" class="border relative">
+  <div @click="console.log(slidesArray)" class="relative p-3">
     <p>{</p>
     <div v-for="item in slidesArray">
       <div class="pl-5 flex gap-3">
@@ -13,7 +13,7 @@
             <input
               v-model="slides[slide.id].key"
               placeholder="Enter unique key for a slide"
-              class="bg-gray-900 rounded-2xl px-2"
+              class="w-full bg-transparent placeholder:text-slate-400 text-sm border border-slate-200/25 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow text-white"
             />
           </div>
         </template>
@@ -39,12 +39,21 @@
 
         <template v-if="item[0] === 'elements'">
           <p>{{ item[0] }}:</p>
-          <pre v-if="!isEditingElements" class="relative">{{ elementsString }}</pre>
+          <!-- <pre v-if="!isEditingElements" class="relative">{{ elementsString }}</pre>
           <textarea
             v-else
             class="bg-gray-900 rounded-2xl px-2 w-full h-52 resize-y"
             v-model="elementsString"
-          ></textarea>
+          ></textarea> -->
+
+          <JsonEditorVue
+            v-show="isEditingElements"
+            class="jse-theme-dark"
+            v-model="elementsString"
+            v-bind="{
+              /* local props & attrs */
+            }"
+          />
           <IconEdit
             @click="toggleEditElements"
             class="w-5 h-5 fill-white cursor-pointer absolute right-5 bg-gray-900"
@@ -60,6 +69,7 @@
     >
       X
     </button>
+    <button class="bg-gray-500 cursor-pointer p-1 rounded-md absolute top-0 right-[100px]">drag me</button>
   </div>
 </template>
 
@@ -69,6 +79,7 @@ import type { Slide } from '@/interfaces/slides'
 import { useSlidesStore } from '@/stores/slides.store'
 import { storeToRefs } from 'pinia'
 import IconEdit from '@/components/icons/IconEdit.vue'
+import 'vanilla-jsoneditor/themes/jse-theme-dark.css'
 
 interface Props {
   slide: Slide

@@ -4,6 +4,7 @@ import type { Slides, Slide } from '@/interfaces/slides'
 
 export const useSlidesStore = defineStore('slides', () => {
   const slides = ref<Slides>({})
+  const slideOrder = ref<string[]>([])
 
   function addSlide() {
     const newSlide: Slide = {
@@ -158,6 +159,7 @@ export const useSlidesStore = defineStore('slides', () => {
     }
 
     slides.value[newSlide.id] = newSlide
+    slideOrder.value.push(newSlide.id)
     console.log('new slide created: ', newSlide)
   }
 
@@ -166,14 +168,45 @@ export const useSlidesStore = defineStore('slides', () => {
   if (savedSlides) {
     slides.value = JSON.parse(savedSlides)
   }
+  // 🟢 Load data from localStorage when the store initializes
+  const savedOrder = localStorage.getItem('slideOrder')
+  if (savedOrder) {
+    slideOrder.value = JSON.parse(savedOrder)
+  }
 
   function deleteSlide(s: Slide) {
     // slides.value = slides.value.filter((slide) => slide.id !== s.id)
     delete slides.value[s.id]
+    slideOrder.value = slideOrder.value.filter((slideId) => slideId == s.id)
   }
 
   function $reset() {
     slides.value = {}
+  }
+
+  function reorderSlides(draggedSlideId: string, targetSlideId: string) {
+    // Get the index of the dragged and target slides in slideOrder
+    const draggedIndex = slideOrder.value.indexOf(draggedSlideId)
+    const targetIndex = slideOrder.value.indexOf(targetSlideId)
+
+    // If either of the slides is not found, return early
+    if (draggedIndex === -1 || targetIndex === -1) return
+
+    // Move the dragged slide to the new position in the slideOrder array
+    slideOrder.value.splice(draggedIndex, 1) // Remove the dragged slide ID
+    slideOrder.value.splice(targetIndex, 0, draggedSlideId) // Insert it at the target position
+
+    // Now, update the slides' order based on the new slideOrder array
+    const orderedSlides = slideOrder.value.map((id) => slides.value[id])
+
+    // Rebuild the slides object based on the new order
+    slides.value = orderedSlides.reduce((acc: any, slide) => {
+      acc[slide.id] = slide
+      return acc
+    }, {})
+
+    // Optionally, save the new order to localStorage
+    localStorage.setItem('slideOrder', JSON.stringify(slideOrder.value))
   }
 
   // Save slides to localStorage whenever they change
@@ -184,6 +217,13 @@ export const useSlidesStore = defineStore('slides', () => {
     },
     { deep: true },
   )
+  watch(
+    slideOrder,
+    (newOrder: any) => {
+      localStorage.setItem('slideOrder', JSON.stringify(newOrder))
+    },
+    { deep: true },
+  )
 
-  return { slides, addSlide, deleteSlide, $reset }
+  return { slides, slideOrder, addSlide, deleteSlide, $reset, reorderSlides }
 })
